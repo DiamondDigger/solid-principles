@@ -12,7 +12,7 @@ class MemberOfCompany extends Person{
 
 class Guest extends Person{
     access(name){
-        console.log(`Dear - ${name} - Sorry, you have not root rights!`)
+        console.error(`Dear - ${name} - Sorry, you have not root rights!`)
     }
 }
 
