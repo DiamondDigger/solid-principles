@@ -11,28 +11,43 @@ class News {
         this.text = text
         this.modified = true
     }
+}
 
-    toHtml() {
+class PrintNews {
+    constructor(news) {
+        this.news = news
+    }
+
+    html() {
         return `
         <div>
-            <h1>${this.title}</h1>
-            <p>${this.text}</p>
+            <h1>${this.news.title}</h1>
+            <p>${this.news.text}</p>
         </div>
         `
     }
 
-    toJSON() {
+    json() {
         return JSON.stringify({
-            title: this.title,
-            text: this.text,
-            modified: this.modified
-        },null, 1)
+            title: this.news.title,
+            text: this.news.text,
+            modified: this.news.modified
+        }, null, 1)
+    }
+
+    xml() {
+        return `
+        <news>
+            <title>${this.news.title}</title>        
+            <text>${this.news.text}</text>        
+        </news>
+        `
     }
 }
 
 const news = new News('Sun - undiscovered planet', 'New research on New Zealand scientists')
-console.log(news)
-console.log('HTML presentation of news',news.toHtml())
-console.log('JSON presentation of news',news.toJSON())
-
+const printer = new PrintNews(news)
+console.log(printer.html(news))
+console.log(printer.xml(news))
+console.log(printer.json(news))
 
