@@ -4,35 +4,34 @@ class Animal{
     constructor(name){
         this.name = name
     }
+}
+
+class Dog extends Animal{
+}
+class Eagle extends Animal{
+}
+class Whale extends Animal{
+}
+
+const walker = {
     walk(){
         console.log(`${this.name} can walk`)
     }
-    swim(){
-        console.log(`${this.name} can swim`)
-    }
+}
+const flier = {
     fly(){
         console.log(`${this.name} can fly`)
     }
 }
+const swimmer = {
+    swim(){
+        console.log(`${this.name} can swim`)
+    }
+}
 
-class Dog extends Animal{
-    fly() {
-        return null
-    }
-}
-class Eagle extends Animal{
-    swim() {
-        return null
-    }
-}
-class Whale extends Animal{
-    walk() {
-        return null
-    }
-    fly() {
-        return null
-    }
-}
+Object.assign(Dog.prototype,walker,swimmer)
+Object.assign(Eagle.prototype,walker,flier)
+Object.assign(Whale.prototype,swimmer)
 
 const dog = new Dog('Jimbo')
 const eagle = new Eagle('Desert Eagle')
@@ -40,12 +39,8 @@ const whale = new Whale('Big Brother')
 
 dog.walk()
 dog.swim()
-dog.fly()
 
 eagle.walk()
-eagle.swim()
 eagle.fly()
 
-whale.walk()
 whale.swim()
-whale.fly()
