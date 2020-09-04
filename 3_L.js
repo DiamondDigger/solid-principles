@@ -7,6 +7,10 @@ class Person{
     }
 }
 
+class MemberOfCompany{
+
+}
+
 class FrontendDeveloper extends Person{
     name = 'frontend developer'
 }
@@ -17,6 +21,9 @@ class BackendDeveloper extends Person{
 
 class Enemy extends Person{
     name = 'I am an enemy, give me your access and I gonna destroy your system!!'
+    access() {
+        console.log('I am technical director now! You all fired!')
+    }
 }
 
 const front = new FrontendDeveloper()
