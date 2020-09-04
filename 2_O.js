@@ -1,53 +1,74 @@
 //Open close principle
-class Square {
-    constructor(size){
-        this.type = 'square'
+class Shape {
+    area() {
+        throw new Error('area method has not been realized')
+    }
+}
+
+class Square extends Shape{
+    constructor(size) {
+        super()
         this.size = size
     }
-}
 
-class Circle{
-    constructor(radius){
-        this.type = 'circle'
-        this.radius = radius
+    area() {
+        return this.size ** 2
     }
 }
 
-class Rectangle{
-    constructor(height, width){
-        this.type = 'rectangle'
+class Circle extends Shape{
+    constructor(radius) {
+        super()
+        this.radius = radius
+    }
+
+    area() {
+        return (this.radius ** 2) * Math.PI
+    }
+}
+
+class Rectangle extends Shape{
+    constructor(height, width) {
+        super()
         this.height = height
         this.width = width
     }
+
+    area() {
+        return this.height * this.width
+    }
 }
 
-class Calculator{
-    constructor(shapes = []){
+class Triangle extends Shape{
+    constructor(a, b) {
+        super()
+        this.a = a
+        this.b = b
+    }
+
+    area() {
+        return (this.a * this.b) / 2
+    }
+}
+
+class Calculator {
+    constructor(shapes = []) {
         this.shapes = shapes
     }
 
-    sum(){
-        return this.shapes.reduce((acc, shape)=>{
-            switch (shape.type) {
-                case 'square':
-                    acc += shape.size ** 2
-                    break
-                case 'circle':
-                    acc += (shape.radius ** 2) * Math.PI
-                    break
-                case 'rectangle':
-                    acc += shape.height * shape.width
-                    break
-            }
+    sum() {
+        return this.shapes.reduce((acc, shape) => {
+            acc += shape.area()
             return acc
-        },0)
+        }, 0)
     }
 }
 
 const calculator = new Calculator([
     new Square(10),
     new Circle(1),
-    new Rectangle(20,5)
+    new Rectangle(20, 5),
+    new Triangle(50, 3)
 ])
 
 console.log(calculator.sum())
