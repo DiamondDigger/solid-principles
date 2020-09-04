@@ -13,6 +13,14 @@ class Circle{
     }
 }
 
+class Rectangle{
+    constructor(height, width){
+        this.type = 'rectangle'
+        this.height = height
+        this.width = width
+    }
+}
+
 class Calculator{
     constructor(shapes = []){
         this.shapes = shapes
@@ -27,6 +35,9 @@ class Calculator{
                 case 'circle':
                     acc += (shape.radius ** 2) * Math.PI
                     break
+                case 'rectangle':
+                    acc += shape.height * shape.width
+                    break
             }
             return acc
         },0)
@@ -35,7 +46,8 @@ class Calculator{
 
 const calculator = new Calculator([
     new Square(10),
-    new Circle(1)
+    new Circle(1),
+    new Rectangle(20,5)
 ])
 
 console.log(calculator.sum())
