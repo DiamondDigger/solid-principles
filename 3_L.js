@@ -1,29 +1,31 @@
 //Liskov substitution principle
 
 class Person{
-    name = 'person'
-    access(name){
+    iq = 3000
+}
+
+class MemberOfCompany extends Person{
+    access(name = 'Unknown member'){
         console.log(`${name} - You have access!`)
     }
 }
 
-class MemberOfCompany{
-
+class Guest extends Person{
+    access(name){
+        console.log(`Dear - ${name} - Sorry, you have not root rights!`)
+    }
 }
 
-class FrontendDeveloper extends Person{
+class FrontendDeveloper extends MemberOfCompany{
     name = 'frontend developer'
 }
 
-class BackendDeveloper extends Person{
+class BackendDeveloper extends MemberOfCompany{
     name = 'backend developer'
 }
 
-class Enemy extends Person{
+class Enemy extends Guest{
     name = 'I am an enemy, give me your access and I gonna destroy your system!!'
-    access() {
-        console.log('I am technical director now! You all fired!')
-    }
 }
 
 const front = new FrontendDeveloper()
